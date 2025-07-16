@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://brx8h06cn0pyu"]
+
+[ext_resource type="Script" path="res://button_start.gd" id="1_qotqd"]
+[ext_resource type="Texture2D" uid="uid://cecay1mbb215s" path="res://assets/btn_play.png" id="2_ugxs2"]
+[ext_resource type="AudioStream" uid="uid://denxvao72aone" path="res://assets/snd/game_start.mp3" id="3_6iwlg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mchyt"]
+size = Vector2(258, 100)
+
+[node name="ButtonStart" type="Area2D"]
+script = ExtResource("1_qotqd")
+
+[node name="BtnPlay" type="Sprite2D" parent="."]
+position = Vector2(-7.62939e-06, -16)
+scale = Vector2(0.544807, 0.544807)
+texture = ExtResource("2_ugxs2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7.5, -2)
+shape = SubResource("RectangleShape2D_mchyt")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6iwlg")

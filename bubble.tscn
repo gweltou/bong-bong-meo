@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=3 uid="uid://dmvh2oqhnp4f5"]
+
+[ext_resource type="Script" path="res://bubble.gd" id="1_cu4o8"]
+[ext_resource type="Texture2D" uid="uid://daq2hqgs5j2g6" path="res://assets/bubble_idle.png" id="1_ncpdt"]
+[ext_resource type="Texture2D" uid="uid://x7u4tdn104s7" path="res://assets/bubble.png" id="2_fulgg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkxjr"]
+atlas = ExtResource("1_ncpdt")
+region = Rect2(0, 0, 280, 264)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hh03r"]
+atlas = ExtResource("1_ncpdt")
+region = Rect2(280, 0, 280, 264)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fu16"]
+atlas = ExtResource("1_ncpdt")
+region = Rect2(560, 0, 280, 264)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxerk"]
+atlas = ExtResource("1_ncpdt")
+region = Rect2(840, 0, 280, 264)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7aiko"]
+atlas = ExtResource("2_fulgg")
+region = Rect2(1068, 0, 356, 358)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5xd5"]
+atlas = ExtResource("2_fulgg")
+region = Rect2(1424, 0, 356, 358)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_opirt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xkxjr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hh03r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fu16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxerk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7aiko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5xd5")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nnixs"]
+
+[node name="Bubble" type="Area2D"]
+scale = Vector2(0.2, 0.2)
+collision_mask = 2
+script = ExtResource("1_cu4o8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, 0)
+sprite_frames = SubResource("SpriteFrames_opirt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(12.8, 12.8)
+shape = SubResource("CircleShape2D_nnixs")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

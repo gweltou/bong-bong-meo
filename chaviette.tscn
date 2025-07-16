@@ -1,0 +1,196 @@
+[gd_scene load_steps=22 format=3 uid="uid://cixh5yyyhk1oc"]
+
+[ext_resource type="Texture2D" uid="uid://l3noxw145ert" path="res://assets/towell_1.png" id="1_0ant7"]
+[ext_resource type="Script" path="res://chaviette.gd" id="1_4j3fh"]
+[ext_resource type="Texture2D" uid="uid://c5r7secfe34lp" path="res://assets/towell_2.png" id="2_cox7f"]
+[ext_resource type="AudioStream" uid="uid://cycug0bglt8iu" path="res://assets/snd/cat-meowing1.mp3" id="2_qrvly"]
+[ext_resource type="AudioStream" uid="uid://cylug848s0mqo" path="res://assets/snd/cat-meowing2.mp3" id="3_si8j3"]
+[ext_resource type="Texture2D" uid="uid://imcxmxedlqs7" path="res://assets/towell_3.png" id="3_uxjar"]
+[ext_resource type="AudioStream" uid="uid://bh2gl48kb4id5" path="res://assets/snd/cat-meowing3.mp3" id="4_b1j3q"]
+[ext_resource type="Texture2D" uid="uid://dawsdeqgefxr2" path="res://assets/paw_L.png" id="5_0gq5e"]
+[ext_resource type="AudioStream" uid="uid://cbp5j6vymf837" path="res://assets/snd/whoosh.mp3" id="5_1i6ku"]
+[ext_resource type="Texture2D" uid="uid://c001ya1ny0me1" path="res://assets/body.png" id="5_u6otu"]
+[ext_resource type="Texture2D" uid="uid://b0620wjnfgco3" path="res://assets/paw_R.png" id="6_5xhmu"]
+[ext_resource type="AudioStream" uid="uid://hmrck8u5sl0y" path="res://assets/snd/angry_cat.mp3" id="6_h76b6"]
+[ext_resource type="Texture2D" uid="uid://inw615g2668h" path="res://assets/eyes.png" id="8_rpyir"]
+[ext_resource type="Texture2D" uid="uid://dj3ntxgpy8t42" path="res://assets/tail.png" id="8_t0afl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gm2qd"]
+size = Vector2(20, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2muqd"]
+size = Vector2(20, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xjxbo"]
+size = Vector2(20, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l673d"]
+size = Vector2(15.5019, 53.1392)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gownu"]
+size = Vector2(14.4682, 50.7997)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1q41"]
+size = Vector2(25, 51)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_awfcq"]
+size = Vector2(11, 58)
+
+[node name="Chaviette" type="CharacterBody2D"]
+collision_mask = 0
+script = ExtResource("1_4j3fh")
+audio_list = Array[AudioStream]([ExtResource("2_qrvly"), ExtResource("3_si8j3"), ExtResource("4_b1j3q"), ExtResource("5_1i6ku"), ExtResource("6_h76b6")])
+
+[node name="hand" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_0ant7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 1.5)
+shape = SubResource("RectangleShape2D_gm2qd")
+
+[node name="Towel1" type="RigidBody2D" parent="."]
+position = Vector2(-7, 62)
+collision_mask = 0
+mass = 10.0
+linear_damp = 2.0
+angular_damp = 2.0
+
+[node name="Towell2" type="Sprite2D" parent="Towel1"]
+position = Vector2(4, -33)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_cox7f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Towel1"]
+position = Vector2(6, -38)
+shape = SubResource("RectangleShape2D_2muqd")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Towel1"]
+position = Vector2(6, -49)
+node_a = NodePath("../..")
+node_b = NodePath("..")
+
+[node name="Towel2" type="RigidBody2D" parent="."]
+position = Vector2(-3, 102)
+collision_mask = 0
+mass = 10.0
+linear_damp = 2.0
+angular_damp = 2.0
+
+[node name="Towell3" type="Sprite2D" parent="Towel2"]
+position = Vector2(0, -51)
+rotation = -0.217761
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("3_uxjar")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Towel2"]
+position = Vector2(2, -51)
+shape = SubResource("RectangleShape2D_xjxbo")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="Towel2"]
+position = Vector2(2, -65)
+node_a = NodePath("../../Towel1")
+node_b = NodePath("..")
+
+[node name="Cat" type="RigidBody2D" parent="."]
+position = Vector2(-2, 65)
+collision_layer = 2
+collision_mask = 0
+metadata/_edit_group_ = true
+
+[node name="cat_joint" type="PinJoint2D" parent="Cat"]
+node_a = NodePath("../../Towel2")
+node_b = NodePath("..")
+angular_limit_enabled = true
+angular_limit_lower = -0.261799
+angular_limit_upper = 0.261799
+
+[node name="PawL" type="RigidBody2D" parent="Cat"]
+position = Vector2(-8, 60)
+collision_layer = 2
+collision_mask = 0
+metadata/_edit_group_ = true
+
+[node name="paw_l" type="Sprite2D" parent="Cat/PawL"]
+position = Vector2(-5, 22)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("5_0gq5e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cat/PawL"]
+position = Vector2(-6.55145, 22.1584)
+rotation = 0.314159
+shape = SubResource("RectangleShape2D_l673d")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Cat/PawL"]
+node_a = NodePath("../..")
+node_b = NodePath("..")
+angular_limit_enabled = true
+angular_limit_lower = -0.785398
+angular_limit_upper = 0.785398
+
+[node name="PawR" type="RigidBody2D" parent="Cat"]
+position = Vector2(9, 63)
+collision_layer = 2
+collision_mask = 0
+metadata/_edit_group_ = true
+
+[node name="paw_r" type="Sprite2D" parent="Cat/PawR"]
+position = Vector2(1.75, 20.5)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("6_5xhmu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cat/PawR"]
+position = Vector2(3.01362, 21.0814)
+rotation = -0.165806
+shape = SubResource("RectangleShape2D_gownu")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="Cat/PawR"]
+node_a = NodePath("../..")
+node_b = NodePath("..")
+angular_limit_enabled = true
+angular_limit_lower = -0.785398
+angular_limit_upper = 0.785398
+
+[node name="body" type="Sprite2D" parent="Cat"]
+position = Vector2(0, 23.5)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("5_u6otu")
+
+[node name="eyes" type="Sprite2D" parent="Cat"]
+position = Vector2(3, 12)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("8_rpyir")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cat"]
+position = Vector2(0.5, 27.5)
+shape = SubResource("RectangleShape2D_v1q41")
+
+[node name="Tail" type="RigidBody2D" parent="Cat"]
+position = Vector2(0, 63)
+collision_layer = 2
+collision_mask = 0
+
+[node name="tail" type="Sprite2D" parent="Cat/Tail"]
+position = Vector2(-1, 27)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("8_t0afl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cat/Tail"]
+position = Vector2(-0.5, 27)
+shape = SubResource("RectangleShape2D_awfcq")
+
+[node name="PinJoint2D4" type="PinJoint2D" parent="Cat/Tail"]
+node_a = NodePath("../..")
+node_b = NodePath("..")
+
+[node name="Dripping" type="CPUParticles2D" parent="Cat"]
+position = Vector2(0, 50)
+emitting = false
+amount = 20
+emission_shape = 3
+emission_rect_extents = Vector2(16, 30)
+scale_amount_min = 4.0
+scale_amount_max = 5.0
+color = Color(0, 0.823529, 1, 1)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

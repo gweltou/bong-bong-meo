@@ -1,0 +1,259 @@
+[gd_scene load_steps=22 format=3 uid="uid://cjlt3lu4o837m"]
+
+[ext_resource type="Script" path="res://bath_level.gd" id="1_vfggr"]
+[ext_resource type="Texture2D" uid="uid://db7k20b4275wx" path="res://assets/cat_bg.png" id="2_j0x2r"]
+[ext_resource type="PackedScene" uid="uid://cixh5yyyhk1oc" path="res://chaviette.tscn" id="3_aygcg"]
+[ext_resource type="Texture2D" uid="uid://xc6qnw8sagys" path="res://assets/Bong_bong_meo.png" id="4_a8r7s"]
+[ext_resource type="FontFile" uid="uid://ckjs4oxu15ywb" path="res://PressStart2P.ttf" id="4_nv3tu"]
+[ext_resource type="Texture2D" uid="uid://bnudv4c0xe6ni" path="res://assets/bg_tile.png" id="5_cd83l"]
+[ext_resource type="Texture2D" uid="uid://bm8gngs4jnovn" path="res://assets/bathtub_bot.png" id="5_nrw40"]
+[ext_resource type="PackedScene" uid="uid://brx8h06cn0pyu" path="res://button_start.tscn" id="6_md2wg"]
+[ext_resource type="AudioStream" uid="uid://css6c5l42xci3" path="res://assets/snd/bubblepop.mp3" id="9_y3jk7"]
+[ext_resource type="PackedScene" uid="uid://c8cjl2h6mhmwl" path="res://button_quit.tscn" id="10_v2s8u"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7kqnt"]
+font = ExtResource("4_nv3tu")
+font_color = Color(0, 0, 0, 0.301961)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ipqu5"]
+size = Vector2(489, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5xeqg"]
+size = Vector2(481, 30)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5aa5v"]
+font = ExtResource("4_nv3tu")
+font_size = 32
+font_color = Color(0, 1, 0, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 0.392157)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vclws"]
+font = ExtResource("4_nv3tu")
+font_size = 32
+font_color = Color(1, 1, 0, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 0.392157)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8k8r0"]
+font = ExtResource("4_nv3tu")
+font_size = 100
+font_color = Color(1, 1, 0, 1)
+
+[sub_resource type="Animation" id="Animation_ny2ab"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:label_settings:font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Camera/ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_njxbu"]
+resource_name = "fadeout"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:label_settings:font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 0, 0), Color(1, 1, 0, 1), Color(1, 1, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Camera/ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_42x12"]
+_data = {
+"RESET": SubResource("Animation_ny2ab"),
+"fadeout": SubResource("Animation_njxbu")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t3aeq"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dscw0"]
+random_pitch = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("9_y3jk7")
+
+[node name="BathLevel" type="Node2D"]
+script = ExtResource("1_vfggr")
+
+[node name="BgTile" type="Sprite2D" parent="."]
+position = Vector2(320, -139)
+scale = Vector2(1, -1)
+texture = ExtResource("5_cd83l")
+metadata/_edit_lock_ = true
+
+[node name="BgTile2" type="Sprite2D" parent="."]
+position = Vector2(320, -420)
+texture = ExtResource("5_cd83l")
+metadata/_edit_lock_ = true
+
+[node name="BgTile3" type="Sprite2D" parent="."]
+position = Vector2(320, -700)
+scale = Vector2(1, -1)
+texture = ExtResource("5_cd83l")
+metadata/_edit_lock_ = true
+
+[node name="CatBg" type="Sprite2D" parent="."]
+position = Vector2(320, 240)
+texture = ExtResource("2_j0x2r")
+
+[node name="Credits" type="Label" parent="."]
+offset_left = 425.0
+offset_top = -401.0
+offset_right = 633.0
+offset_bottom = -366.0
+text = "Art: Nakitaku
+Code: Gweltou"
+label_settings = SubResource("LabelSettings_7kqnt")
+
+[node name="bubbles" type="Node2D" parent="."]
+
+[node name="BongBongMeo" type="Sprite2D" parent="."]
+position = Vector2(319.455, -690)
+scale = Vector2(0.893939, 0.893939)
+texture = ExtResource("4_a8r7s")
+
+[node name="Chaviette" parent="." instance=ExtResource("3_aygcg")]
+position = Vector2(324, 119)
+
+[node name="Shower" type="CPUParticles2D" parent="."]
+position = Vector2(48, 252)
+rotation = -0.929765
+emitting = false
+amount = 100
+emission_shape = 3
+emission_rect_extents = Vector2(20, 1)
+direction = Vector2(0, 1)
+spread = 10.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.345098, 1, 1, 1)
+
+[node name="ShowerArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShowerArea"]
+position = Vector2(8, 272)
+polygon = PackedVector2Array(27, -3, 46, -31, 206, 152, 65, 152)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShowerArea"]
+position = Vector2(318, 446)
+shape = SubResource("RectangleShape2D_ipqu5")
+
+[node name="DrownArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DrownArea"]
+position = Vector2(317.5, 486)
+shape = SubResource("RectangleShape2D_5xeqg")
+
+[node name="BathtubBot" type="Sprite2D" parent="."]
+position = Vector2(320, 408)
+texture = ExtResource("5_nrw40")
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(320, -600)
+
+[node name="ColorRect" type="ColorRect" parent="Camera"]
+offset_left = -320.0
+offset_top = -240.0
+offset_right = 320.0
+offset_bottom = 240.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="LabelScore" type="Label" parent="."]
+offset_left = 536.0
+offset_top = 17.0
+offset_right = 632.0
+offset_bottom = 62.0
+text = "100"
+label_settings = SubResource("LabelSettings_5aa5v")
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="LabelTime" type="Label" parent="."]
+offset_left = 16.0
+offset_top = 17.0
+offset_right = 112.0
+offset_bottom = 62.0
+text = "100"
+label_settings = SubResource("LabelSettings_vclws")
+metadata/_edit_lock_ = true
+
+[node name="LabelStart" type="Label" parent="."]
+offset_top = 194.0
+offset_right = 640.0
+offset_bottom = 397.0
+text = "Ready
+steady"
+label_settings = SubResource("LabelSettings_8k8r0")
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../LabelStart")
+libraries = {
+"": SubResource("AnimationLibrary_42x12")
+}
+
+[node name="ButtonStart" parent="." instance=ExtResource("6_md2wg")]
+position = Vector2(186, -467)
+
+[node name="Cursor" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor"]
+shape = SubResource("CircleShape2D_t3aeq")
+
+[node name="AudioPop" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_dscw0")
+volume_db = -8.0
+max_polyphony = 8
+
+[node name="ButtonQuit" parent="." instance=ExtResource("10_v2s8u")]
+position = Vector2(486, -462)
+
+[connection signal="body_entered" from="ShowerArea" to="." method="_on_shower_area_body_entered"]
+[connection signal="body_entered" from="DrownArea" to="." method="_on_drown_area_body_entered"]

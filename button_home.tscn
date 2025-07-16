@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3 uid="uid://bljgcc04c52o4"]
+
+[ext_resource type="Script" path="res://button_home.gd" id="1_76385"]
+[ext_resource type="Texture2D" uid="uid://i6rule4groxy" path="res://assets/patoune_spritsheet.png" id="2_pp2u0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dikvg"]
+atlas = ExtResource("2_pp2u0")
+region = Rect2(0, 0, 181, 171)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oaptk"]
+atlas = ExtResource("2_pp2u0")
+region = Rect2(181, 0, 181, 171)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3g3yl"]
+atlas = ExtResource("2_pp2u0")
+region = Rect2(362, 0, 181, 171)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnusf"]
+atlas = ExtResource("2_pp2u0")
+region = Rect2(543, 0, 181, 171)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hcac"]
+atlas = ExtResource("2_pp2u0")
+region = Rect2(724, 0, 181, 171)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ldvkd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dikvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oaptk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3g3yl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnusf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hcac")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k0q3r"]
+radius = 72.0
+
+[node name="ButtonHome" type="Area2D"]
+script = ExtResource("1_76385")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.90735e-06, -10)
+scale = Vector2(0.845029, 0.845029)
+sprite_frames = SubResource("SpriteFrames_ldvkd")
+frame = 1
+frame_progress = 0.921768
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_k0q3r")

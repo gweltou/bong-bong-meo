@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8cjl2h6mhmwl"]
+
+[ext_resource type="Script" path="res://button_quit.gd" id="1_86svb"]
+[ext_resource type="Texture2D" uid="uid://c854w6ibq7avp" path="res://assets/bouton_quit.png" id="2_k447o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bwl2u"]
+size = Vector2(175, 78)
+
+[node name="ButtonQuit" type="Area2D"]
+script = ExtResource("1_86svb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.761438, 0.761438)
+texture = ExtResource("2_k447o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-12.5, -14)
+shape = SubResource("RectangleShape2D_bwl2u")
